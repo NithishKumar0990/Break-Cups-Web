@@ -8,7 +8,7 @@ const MENU_ITEMS = [
     //COLD COFFEE CATEGORY
     { id: 3, name: 'Cold Brew Fudge', category: 'cold', price: 210, desc: 'Slow-steeped cold brew served over ice with dark chocolate drizzle.', image: '🧊' },
     { id: 4, name: 'Iced Matcha Latte', category: 'cold', price: 240, desc: 'Premium Japanese matcha whisked with chilled organic oat milk.', image: '🍵' },
-    { id: 9, name: 'Hazelnut Frappé', category: 'cold', price: 260, desc: 'Blended espresso ice beverage loaded with roasted hazelnut syrup and whipped cream.', image: '🥤' },
+    { id: 9, name: 'Hazelnut Frappe', category: 'cold', price: 260, desc: 'Blended espresso ice beverage loaded with roasted hazelnut syrup and whipped cream.', image: '🥤' },
     { id: 10, name: 'Spanish Iced Latte', category: 'cold', price: 250, desc: 'Sweetened condensed milk layered with fresh espresso and cold whole milk.', image: '❄️' },
 
     //BAKERY & EATS CATEGORY

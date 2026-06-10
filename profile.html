@@ -126,6 +126,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            const API_BASE = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                ? 'http://localhost:5000'
+                : '';
+
             const userEmail = localStorage.getItem('userEmail');
             const username = localStorage.getItem('username');
             const storedAvatar = localStorage.getItem('userAvatar');
@@ -164,7 +168,7 @@
 
             
             try {
-                const response = await fetch(`http://localhost:5000/api/orders/${userEmail}`);
+                const response = await fetch(`${API_BASE}/api/orders/${userEmail}`);
                 const data = await response.json();
                 const logContainer = document.getElementById('orders-log-list');
 

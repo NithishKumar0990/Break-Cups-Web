@@ -11,10 +11,11 @@ app.use(express.json());
 
 
 const db = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '', 
-    database: 'break_cup_db'
+    host: process.env.DB_HOST || '127.0.0.1',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || '', 
+    database: process.env.DB_DATABASE || 'break_cup_db',
+    port: process.env.DB_PORT || 3306
     });
 
 db.connect((err) => {
@@ -118,6 +119,10 @@ app.get('/api/orders/:email', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`☕ Break Cup backend engine online at: http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`☕ Break Cup backend engine online at: http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;

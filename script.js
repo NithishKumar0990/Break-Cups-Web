@@ -1,3 +1,7 @@
+const API_BASE = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:5000'
+    : '';
+
 const MENU_ITEMS = [
     //HOT COFFEE CATEGORY
     { id: 1, name: 'Classic Espresso', category: 'hot', price: 120, desc: 'Rich, bold, and perfectly extracted classic espresso shot.', image: '☕' },
@@ -135,7 +139,7 @@ window.processCheckout = async function(finalBill) {
     checkoutBtn.disabled = true;
 
     try {
-        const response = await fetch('http://localhost:5000/api/orders', {
+        const response = await fetch(`${API_BASE}/api/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

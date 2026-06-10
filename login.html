@@ -56,6 +56,10 @@
     </div>
 
 <script>
+    const API_BASE = window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000'
+        : '';
+
     document.getElementById('login-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -68,7 +72,7 @@
 
         try {
             //REAL API CALL TO BACKEND
-            const response = await fetch('http://localhost:5000/api/login', {
+            const response = await fetch(`${API_BASE}/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })

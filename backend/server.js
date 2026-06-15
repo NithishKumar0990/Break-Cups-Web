@@ -60,15 +60,13 @@ db.query(createOrdersTable, (err) => {
 
 app.get('/api/debug-env', (req, res) => {
     res.json({
-        DB_HOST_defined: !!process.env.DB_HOST,
-        DB_PORT_defined: !!process.env.DB_PORT,
-        DB_USER_defined: !!process.env.DB_USER,
-        DB_PASSWORD_defined: !!process.env.DB_PASSWORD,
-        DB_DATABASE_defined: !!process.env.DB_DATABASE,
-        DB_SSL_defined: !!process.env.DB_SSL,
-        DB_HOST_value: process.env.DB_HOST ? `${process.env.DB_HOST.substring(0, 8)}...` : 'undefined',
-        DB_USER_value: process.env.DB_USER ? `${process.env.DB_USER}` : 'undefined',
-        raw_process_env_keys: Object.keys(process.env).filter(k => k.startsWith('DB_'))
+        DB_HOST: { type: typeof process.env.DB_HOST, length: process.env.DB_HOST ? process.env.DB_HOST.length : 0, value: process.env.DB_HOST ? `${process.env.DB_HOST.substring(0, 8)}...` : 'N/A' },
+        DB_PORT: { type: typeof process.env.DB_PORT, length: process.env.DB_PORT ? process.env.DB_PORT.length : 0, value: process.env.DB_PORT },
+        DB_USER: { type: typeof process.env.DB_USER, length: process.env.DB_USER ? process.env.DB_USER.length : 0, value: process.env.DB_USER },
+        DB_PASSWORD: { type: typeof process.env.DB_PASSWORD, length: process.env.DB_PASSWORD ? process.env.DB_PASSWORD.length : 0 },
+        DB_DATABASE: { type: typeof process.env.DB_DATABASE, length: process.env.DB_DATABASE ? process.env.DB_DATABASE.length : 0, value: process.env.DB_DATABASE },
+        DB_SSL: { type: typeof process.env.DB_SSL, length: process.env.DB_SSL ? process.env.DB_SSL.length : 0, value: process.env.DB_SSL },
+        raw_keys: Object.keys(process.env).filter(k => k.startsWith('DB_'))
     });
 });
 

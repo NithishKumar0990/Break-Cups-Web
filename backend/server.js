@@ -58,6 +58,20 @@ db.query(createOrdersTable, (err) => {
     }
 });
 
+app.get('/api/debug-env', (req, res) => {
+    res.json({
+        DB_HOST_defined: !!process.env.DB_HOST,
+        DB_PORT_defined: !!process.env.DB_PORT,
+        DB_USER_defined: !!process.env.DB_USER,
+        DB_PASSWORD_defined: !!process.env.DB_PASSWORD,
+        DB_DATABASE_defined: !!process.env.DB_DATABASE,
+        DB_SSL_defined: !!process.env.DB_SSL,
+        DB_HOST_value: process.env.DB_HOST ? `${process.env.DB_HOST.substring(0, 8)}...` : 'undefined',
+        DB_USER_value: process.env.DB_USER ? `${process.env.DB_USER}` : 'undefined',
+        raw_process_env_keys: Object.keys(process.env).filter(k => k.startsWith('DB_'))
+    });
+});
+
 
 app.post('/api/signup', async (req, res) => {
     const { fullname, email, password } = req.body;
